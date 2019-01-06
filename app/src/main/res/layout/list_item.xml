@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="2dp"
+    android:layout_marginBottom="2dp">
+
+    <ImageView
+        android:layout_marginRight="10dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/gambar"
+        android:src="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/list_nama"
+        android:text="@string/nama"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/gambar"
+
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/no_pol"
+        android:textSize="16sp"
+        android:text="@string/no_polisi"
+        android:layout_toRightOf="@+id/gambar"
+        android:layout_below="@+id/list_nama"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jenisoli"
+        android:textSize="16sp"
+        android:text="@string/jenis_oli"
+        android:layout_toRightOf="@+id/gambar"
+        android:layout_below="@+id/no_pol"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kilometer_sekarang"
+        android:text="@string/kilometer_sekarang"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/gambar"
+        android:layout_below="@+id/jenisoli"
+
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/kilometer_service"
+        android:text="@string/kilometer_service"
+        android:textSize="16sp"
+        android:layout_toRightOf="@+id/gambar"
+        android:layout_below="@+id/kilometer_sekarang"
+
+        />
+
+
+
+
+
+</RelativeLayout>
