@@ -5,9 +5,5 @@
     <string name="jenis_oli">Jenis Oli : %s</string>
     <string name="kilometer_sekarang">Kilometer Sekarang : %s</string>
     <string name="kilometer_service">Kilometer Service : %s</string>
-    <string name="nama">Nama : %s</string>
-    <string name="no_polisi">No Polisi : %s</string>
-    <string name="jenis_oli">Jenis Oli : %s</string>
-    <string name="kilometer_sekarang">Kilometer Sekarang : %s</string>
-    <string name="kilometer_service">Kilometer Service : %s</string>
+
 </resources>
