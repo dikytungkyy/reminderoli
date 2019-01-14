@@ -31,8 +31,7 @@ public class SignupActivity extends AppCompatActivity {
     EditText mEmail;
     @BindView(R.id.Password)
     EditText mPass;
-    @BindView(R.id.noPol)
-    EditText mNoPol;
+
     @BindView(R.id.button_signup)
     Button btnLogin;
     @BindView(R.id.loading)
@@ -53,7 +52,7 @@ public class SignupActivity extends AppCompatActivity {
                 String nama = mNama.getText().toString().trim();
                 String pass = mPass.getText().toString().trim();
                 String email = mEmail.getText().toString().trim();
-                String nopol = mNoPol.getText().toString().trim();
+
             if(TextUtils.isEmpty(nama)){
                 mNama.setError("Tidak Boleh Kosong");
             }
@@ -63,13 +62,10 @@ public class SignupActivity extends AppCompatActivity {
             if(TextUtils.isEmpty(email)){
                 mEmail.setError("Tidak Boleh Kosong");
             }
-            if(TextUtils.isEmpty(nopol)){
-                mNoPol.setError("Tidak Boleh Kosong");
-            }
             else {
                 MD5 md5 = new MD5();
 
-                signUp(nama,md5.EncriptMD5(pass),email,nopol);
+                signUp(nama,md5.EncriptMD5(pass),email);
             }
 
 
@@ -78,13 +74,12 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
-    private void signUp(String nama, String pass, String email,String nopol) {
+    private void signUp(String nama, String pass, String email) {
 
-        String URL = "http://reminder.96.lt/SingUp.php?nama=";
+        String URL = "http://reminder.96.lt/setUser.php?user=";
         URL += nama;
         URL += "&pass="+pass;
         URL += "&email="+email;
-        URL += "&nopol="+nopol;
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {

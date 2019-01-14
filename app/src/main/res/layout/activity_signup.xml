@@ -56,20 +56,9 @@
         android:inputType="textPassword"
         android:textColor="#000"
         />
-    <EditText
-        android:id="@+id/noPol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/Password"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:hint="No polisi"
-        android:textColor="#000"
-        />
 
 
     <LinearLayout
-        android:layout_marginTop="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/Password"

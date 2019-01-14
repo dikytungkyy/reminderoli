@@ -26,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class LoginActivity extends AppCompatActivity {
+    private static final String TAG = "TAG";
     @BindView(R.id.edtUsername)
     EditText mUserName;
     @BindView(R.id.edtPassword)
@@ -36,7 +37,7 @@ public class LoginActivity extends AppCompatActivity {
     Button mBtnSingUp;
     @BindView(R.id.progressBar)
     ProgressBar mProgressBar;
-    User users;
+    Mobil mobil;
     String userName;
     String password;
 
@@ -58,11 +59,14 @@ public class LoginActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MD5 md5 =  new MD5();
+                MD5 md5 = new MD5();
                 userName = mUserName.getText().toString();
-                password =md5.EncriptMD5(mPassword.getText().toString());
+                password = md5.EncriptMD5(mPassword.getText().toString());
+                Log.d(TAG, "onClick: " + userName);
+                Log.d(TAG, "onClick: " + password);
                 boolean kosong = true;
                 if (TextUtils.isEmpty(userName)) {
+
                     kosong = false;
                     mUserName.setError("Tidak Boleh Kosong");
 
@@ -80,38 +84,43 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void cekUser() {
-        String URL = "http://reminder.96.lt/jsonNew.php";
+        String URL = "http://reminder.96.lt/getUser.php";
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONObject object = new JSONObject(response);
-                    JSONArray jsonArray = object.getJSONArray("data");
+                    final JSONArray jsonArray = object.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject object1 = jsonArray.getJSONObject(i);
                         User userUrl = new User(object1);
-                        Log.d("TAG", "onResponse: "+userUrl.pass);
-                        Log.d("TAG", "onResponse: "+password);
 
 
-                        if (userUrl.nama.equals(userName) && userUrl.pass.equals(password)) {
-                            mProgressBar.setVisibility(View.GONE);
-                            users = new User(object1);
+                        Log.d(TAG, "onResponse: Url " + userUrl.getUserName());
+                        Log.d(TAG, "onResponse: " + userName);
 
-                            if (userUrl.status.equals("admin")){
-                                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                                intent.putExtra("User",users);
+                        Log.d(TAG, "onResponse: Url" + userUrl.getPassword());
+                        Log.d(TAG, "onResponse: " + password);
+
+
+                        if (userUrl.getUserName().equalsIgnoreCase(userName) && userUrl.getPassword().equals(password)) {
+                            mobil = new Mobil();
+                            mobil.setId_user(userUrl.IdUser);
+                            Log.d(TAG, "onResponse: user id "+userUrl.getIdUser());
+                            if (userUrl.status.equals("admin")) {
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                intent.putExtra(DetailUserActivity.getData, mobil);
                                 startActivity(intent);
-                            }else{
+                            } else {
                                 Intent intent = new Intent(LoginActivity.this, DetailUserActivity.class);
-                                intent.putExtra("User", users);
+                                intent.putExtra(DetailUserActivity.getData, mobil);
                                 startActivity(intent);
                             }
 
                         }
 
                     }
-                    if (users == null) {
+                    if (mobil == null) {
                         Toast.makeText(LoginActivity.this, "Email/Password Salah", Toast.LENGTH_SHORT).show();
                         mProgressBar.setVisibility(View.GONE);
                     }

@@ -23,15 +23,13 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
-
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.rv_list_user)
             RecyclerView rvCatagory;
 
-    UserAdapter adapter;
-    ArrayList<User> listUser;
-    String URL = "http://reminder.96.lt/jsonNew.php";
+    MobilAdapter adapter;
+    ArrayList<Mobil> listUser;
+    String URL = "http://reminder.96.lt/getMobil.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +38,22 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         listUser = new ArrayList<>();
-        adapter = new UserAdapter(this);
+        adapter = new MobilAdapter(this);
         adapter.setListUser(listUser);
         rvCatagory.setLayoutManager(new LinearLayoutManager(this));
         rvCatagory.setAdapter(adapter);
         ItemClickSupport.addTo(rvCatagory).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                User user = new User();
-                user.setNama(listUser.get(position).getNama());
-                user.setNoPol(listUser.get(position).getNoPol());
-                user.setKmService(listUser.get(position).getKmService());
-                user.setKmSekarang(listUser.get(position).getKmSekarang());
-                user.setFoto(listUser.get(position).getFoto());
+                Mobil mobil = new Mobil();
+                mobil.setId_user(listUser.get(position).id_user);
+                mobil.setNoPol(listUser.get(position).getNoPol());
+                mobil.setKmService(listUser.get(position).getKmService());
+                mobil.setKmSekarang(listUser.get(position).getKmSekarang());
+
 
                 Intent intent = new Intent(MainActivity.this,DetailUserActivity.class);
-                intent.putExtra("User",user);
+                intent.putExtra(DetailUserActivity.getData,mobil);
                 startActivity(intent);
             }
         });
@@ -63,13 +61,13 @@ public class MainActivity extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.GET,URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                ArrayList<User> userData = new ArrayList<>();
+                ArrayList<Mobil> userData = new ArrayList<>();
                 try {
                     JSONObject object = new JSONObject(response);
                     JSONArray jsonArray = object.getJSONArray("data");
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject obj = jsonArray.getJSONObject(i);
-                        User user = new User(obj);
+                        Mobil user = new Mobil(obj);
 
 
                        userData.add(user);
