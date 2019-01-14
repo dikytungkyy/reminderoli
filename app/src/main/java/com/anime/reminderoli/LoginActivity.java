@@ -104,6 +104,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
                         if (userUrl.getUserName().equalsIgnoreCase(userName) && userUrl.getPassword().equals(password)) {
+                            mProgressBar.setVisibility(View.GONE);
                             mobil = new Mobil();
                             mobil.setId_user(userUrl.IdUser);
                             Log.d(TAG, "onResponse: user id "+userUrl.getIdUser());
