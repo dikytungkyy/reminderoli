@@ -5,7 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
-
+<ProgressBar
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:id="@+id/loading"/>
     <TextView
         android:id="@+id/fromregis"
         android:layout_width="wrap_content"
@@ -16,26 +21,16 @@
         android:textSize="30sp"
         android:textColor="@color/clay"/>
 
-    <EditText
-        android:layout_below="@id/fromregis"
-        android:id="@+id/User_signup"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginRight="16dp"
-        android:hint="Username"
-        android:textColor="#000"/>
 
     <EditText
+        android:layout_marginTop="50dp"
         android:id="@+id/nama"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/User_signup"
+        android:layout_below="@+id/fromregis"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:hint="Nama"
-        android:inputType="textPassword"
         android:textColor="#000"
 
         />
@@ -62,6 +57,7 @@
         android:textColor="#000"
         />
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,23 +65,15 @@
         android:orientation="horizontal">
 
 
-        <Button
 
-            android:id="@+id/button_login"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="5dp"
-            android:text="Login" />
 
         <Button
             android:id="@+id/button_signup"
-            android:layout_width="150dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_marginTop="20dp"
-            android:text="Signup" />
+            android:text="Daftar" />
 
     </LinearLayout>
 
